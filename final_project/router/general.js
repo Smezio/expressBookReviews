@@ -8,8 +8,6 @@ const public_users = express.Router();
 public_users.post("/register", (req,res) => {
   //Write your code here
   const {username, password} = req.body;
-  console.log(req.body);
-  console.log(username + "  " + password);
   if(username == null || password == null)
     return res.status(300).json({message: "Invalid credentials"});
   
@@ -61,7 +59,6 @@ public_users.get('/title/:title',function (req, res) {
     title = title.replaceAll('+', ' ');
 
   let book = {}
-  console.log(title);
   for(const isbn in books) {
     if(books[isbn].title === title)
       book = books[isbn];
