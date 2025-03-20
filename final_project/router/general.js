@@ -3,6 +3,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
+const axios = require('axios').default;
 
 
 public_users.post("/register", (req,res) => {
@@ -23,6 +24,20 @@ public_users.get('/',function (req, res) {
   //Write your code here
   return res.status(200).json(books);
 });
+
+
+
+/*** TASK 10 ***/
+async function getAllBooks(url) {
+  try {
+    const result = await axios.get(url);
+    console.log(result.data);
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
@@ -76,3 +91,4 @@ public_users.get('/review/:isbn',function (req, res) {
 });
 
 module.exports.general = public_users;
+module.exports.requests = {getAllBooks};

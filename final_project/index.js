@@ -5,6 +5,8 @@ const customer_routes = require('./router/auth_users.js').authenticated;
 const genl_routes = require('./router/general.js').general;
 const users = require('./router/auth_users.js').users
 
+const requests = require('./router/general.js').requests;
+
 const app = express();
 
 app.use(express.json());
@@ -36,3 +38,9 @@ app.use("/customer", customer_routes);
 app.use("/", genl_routes);
 
 app.listen(PORT,()=>console.log("Server is running"));
+
+
+requests.getAllBooks('http://localhost:5000/');
+requests.getBookByISBN('http://localhost:5000/1');
+requests.getBooksOfAuthor('http://localhost:5000/Unknown');
+requests.getBookByTitle('http://localhost:5000/Fairy+tales');
